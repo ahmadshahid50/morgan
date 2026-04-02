@@ -34,8 +34,13 @@ export default function SplitCard({
   const [hasRevealed, setHasRevealed] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isAnyHovered, setIsAnyHovered] = useState(false);
+  const [canHover] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia?.("(hover: hover)").matches ?? false;
+  });
 
-  const isActive = hasRevealed || isHovered || isAnyHovered;
+  // On touch devices, "hover" doesn't exist; keep content visible.
+  const isActive = hasRevealed || isHovered || isAnyHovered || !canHover;
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -133,7 +138,7 @@ export default function SplitCard({
         }`}
       />
 
-      <div className="relative z-10 flex h-full w-full items-center justify-center px-6 text-center">
+      <div className="relative z-10 flex h-full w-full items-end md:items-center justify-center px-6 pb-90 mt-90 md:mt-10 md:pt-50 text-center">
         <div className="w-full max-w-xl">
           <h2 className="text-white text-3xl md:text-5xl leading-[1.05] tracking-tight">
             {titleLines.map((line, idx) => (

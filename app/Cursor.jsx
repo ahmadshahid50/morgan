@@ -7,7 +7,8 @@ export default function CustomCursor() {
   const cursorBorderRef = useRef(null);
 
   useEffect(() => {
-    if (window.matchMedia("(max-width: 768px)").matches) return;
+    // Only enable on desktop/laptop: needs a fine pointer + real hover.
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
     const cursor = cursorRef.current;
     const cursorBorder = cursorBorderRef.current;
@@ -45,7 +46,10 @@ export default function CustomCursor() {
     };
   }, []);
 
-  if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
+  if (
+    typeof window === "undefined" ||
+    !window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  ) {
     return null;
   }
 
