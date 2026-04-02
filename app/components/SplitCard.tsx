@@ -24,7 +24,6 @@ export default function SplitCard({
   ctaLabel,
   href,
   backgroundSrc,
-  overlayClassName,
   imagePositionClassName = "object-center",
   imageOpacityClassName = "opacity-70",
   topLogoSrc,
@@ -133,7 +132,7 @@ export default function SplitCard({
       />
 
       <div
-        className={`absolute inset-0 ${overlayClassName} transition-opacity duration-700 ${
+        className={`absolute inset-0  transition-opacity duration-700 ${
           isActive ? "opacity-100" : "opacity-0"
         }`}
       />
