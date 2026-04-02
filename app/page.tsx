@@ -1,6 +1,6 @@
 import { Poppins } from "next/font/google";
-import Image from "next/image";
 import SplitCard from "./components/SplitCard";
+import Navbar from "./components/Navbar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -13,46 +13,48 @@ const COACHING_URL = "https://bodytemplebymorgan.com/";
 
 export default function Page() {
   return (
-    <main
-      className={`${poppins.className} relative h-screen w-full flex flex-col md:flex-row`}
+    <div
+      className={`${poppins.className} min-h-screen bg-black flex flex-col`}
     >
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-        <Image
-          src="/logo.png"
-          alt="Logo"
-          width={96}
-          height={96}
-          className="h-16 w-auto md:h-20"
-          priority
+      <Navbar />
+      <main className="flex-1 w-full flex flex-col md:flex-row relative">
+        {/* Partition line between the two 50/50 panels */}
+        <div
+          aria-hidden="true"
+          className="md:hidden absolute left-0 right-0 top-1/2 h-px bg-white/20 pointer-events-none"
         />
-      </div>
+        <div
+          aria-hidden="true"
+          className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/20 pointer-events-none"
+        />
 
-      <div
-        aria-hidden="true"
-        className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-white/20 z-[5] pointer-events-none"
-      />
+        <SplitCard
+          id="clinic"
+          sectionClassName="flex-1 min-h-0"
+          titleLines={["Body Template", "Clinic", "by Morgan"]}
+          subtitle="Advanced treatments for your body transformation"
+          ctaLabel="Explore Clinic"
+          href={CLINIC_URL}
+          backgroundSrc="/images/clininc1.jpg"
+          // overlayClassName="bg-black/45"
+          imagePositionClassName="object-top"
+          imageOpacityClassName="opacity-100"
+          // topLogoSrc="/logo.png"
+        />
 
-      <SplitCard
-        titleLines={["Body Template", "Clinic", "by Morgan"]}
-        subtitle="Advanced treatments for your body transformation"
-        ctaLabel="Explore Clinic"
-        href={CLINIC_URL}
-        backgroundSrc="/images/clinic.png"
-        overlayClassName="bg-black/45"
-        imagePositionClassName="object-top"
-        imageOpacityClassName="opacity-100"
-      />
-
-      <SplitCard
-        titleLines={["Body Template", "Coaching", "by Morgan"]}
-        subtitle="Expert coaching tailored to support your personal transformation"
-        ctaLabel="Explore Coaching"
-        href={COACHING_URL}
-        backgroundSrc="/images/coaching.png"
-        overlayClassName="bg-black/45"
-        imagePositionClassName="object-top"
-        imageOpacityClassName="opacity-100"
-      />
-    </main>
+        <SplitCard
+          id="coaching"
+          sectionClassName="flex-1 min-h-0"
+          titleLines={["Body Template", "Coaching", "by Morgan"]}
+          subtitle="Expert coaching tailored to support your personal transformation"
+          ctaLabel="Explore Coaching"
+          href={COACHING_URL}
+          backgroundSrc="/images/coaching1.jpg"
+          // overlayClassName="bg-black/45"
+          imagePositionClassName="object-top"
+          imageOpacityClassName="opacity-100"
+        />
+      </main>
+    </div>
   );
 }
