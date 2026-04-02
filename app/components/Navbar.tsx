@@ -19,10 +19,10 @@ export default function Navbar() {
           aria-label="Go to clinic section"
         >
           <Image
-            src="/logo.png"
+            src="/new-logo.png"
             alt="Logo"
-            width={64}
-            height={64}
+            width={615}
+            height={176}
             className="h-16 w-auto object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
             priority
           />
