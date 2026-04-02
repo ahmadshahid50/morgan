@@ -28,3 +28,35 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes bt-image-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes bt-button-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+.bt-image-reveal {
+  animation: bt-image-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.bt-button-reveal {
+  animation: bt-button-pop 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}

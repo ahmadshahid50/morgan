@@ -41,6 +41,15 @@ export default function SplitCard({
     const el = sectionRef.current;
     if (!el) return;
 
+    // If the user navigates away/back, IntersectionObserver may not fire immediately.
+    // Ensure content is visible when the section is already in view.
+    const rect = el.getBoundingClientRect();
+    const viewportH = window.innerHeight || 0;
+    const isInView = rect.top < viewportH * 0.85 && rect.bottom > viewportH * 0.15;
+    if (isInView) {
+      requestAnimationFrame(() => setHasRevealed(true));
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setHasRevealed(true);
@@ -111,9 +120,11 @@ export default function SplitCard({
         alt=""
         fill
         priority={false}
-        className={`object-cover ${imagePositionClassName} ${imageOpacityClassName} transition-transform duration-700 will-change-[transform] ${
+        className={`object-cover ${imagePositionClassName} ${imageOpacityClassName} will-change-[transform,filter] ${
+          hasRevealed ? "bt-image-reveal" : ""
+        } transition-transform duration-700 ${
           isActive ? "scale-100" : "scale-110"
-        }`}
+        } ${isHovered ? "md:scale-[1.03]" : ""}`}
       />
 
       <div
@@ -154,8 +165,10 @@ export default function SplitCard({
               className="inline-flex items-center justify-center rounded-full
                          border border-white bg-transparent
                          px-8 py-3 text-sm md:text-base font-semibold text-white
-                         transition-all duration-200
-                         hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/60"
+                         transition-all duration-200 will-change-[transform]
+                         hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(0,0,0,0.25)]
+                         focus:outline-none focus:ring-2 focus:ring-white/60
+                         active:translate-y-0 active:shadow-none"
               style={{
                 transitionDelay: "200ms",
               }}
@@ -163,7 +176,7 @@ export default function SplitCard({
               <span
                 className={`inline-block transition-all duration-700 will-change-[transform] ${
                   isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                }`}
+                } ${hasRevealed ? "bt-button-reveal" : ""}`}
               >
                 {ctaLabel}
               </span>

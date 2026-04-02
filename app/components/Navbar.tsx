@@ -6,7 +6,7 @@ export default function Navbar() {
       <div className="mx-auto grid h-16 max-w-6xl grid-cols-3 items-center px-6">
         <nav className="justify-self-start">
           <a
-            href="#clinic"
+            href="https://bodytempleclinic.com/"
             className="rounded-full px-3 py-2 text-sm font-semibold text-black transition-colors hover:bg-black/5 hover:text-black focus:outline-none focus:ring-2 focus:ring-black/20"
           >
             Clinic
@@ -30,7 +30,7 @@ export default function Navbar() {
 
         <nav className="justify-self-end">
           <a
-            href="#coaching"
+            href="https://bodytemplebymorgan.com/"
             className="rounded-full px-3 py-2 text-sm font-semibold text-black transition-colors hover:bg-black/5 hover:text-black focus:outline-none focus:ring-2 focus:ring-black/20"
           >
             Coaching
