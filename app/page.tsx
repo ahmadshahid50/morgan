@@ -39,7 +39,7 @@ export default function Page() {
           ctaLabel="Explore Clinic"
           href={CLINIC_URL}
           backgroundSrc="/images/clininc1.jpg"
-          overlayClassName="bg-black/45"
+          // overlayClassName="bg-black/45"
           imagePositionClassName="object-top"
           imageOpacityClassName="opacity-100"
           // topLogoSrc="/logo.png"
@@ -53,7 +53,7 @@ export default function Page() {
           ctaLabel="Explore Coaching"
           href={COACHING_URL}
           backgroundSrc="/images/coaching1.jpg"
-          overlayClassName="bg-black/45"
+          // overlayClassName="bg-black/45"
           imagePositionClassName="object-top"
           imageOpacityClassName="opacity-100"
         />
