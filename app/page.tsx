@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import SplitCard from "./components/SplitCard";
 import Navbar from "./components/Navbar";
+import Cursor from "./Cursor";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -13,6 +14,8 @@ const COACHING_URL = "https://bodytemplebymorgan.com/";
 
 export default function Page() {
   return (
+    <>
+      <Cursor />
     <div
       className={`${poppins.className} min-h-screen bg-black flex flex-col`}
     >
@@ -56,5 +59,6 @@ export default function Page() {
         />
       </main>
     </div>
+    </>
   );
 }
